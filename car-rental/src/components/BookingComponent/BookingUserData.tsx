@@ -1,19 +1,20 @@
 import { authOptions } from "@/libs/authOptions";
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
-import styles from "./DashBoardUserData.module.css"
+import styles from "./bookingUserData.module.css"
 
-export default async function DashBoardUserData() {
+export default async function BookingUserData() {
+  
     const session = await getServerSession(authOptions);
     if(!session || !session.user.token) return null 
 
     const profile = await getUserProfile(session.user.token)
     var createdAt = new Date(profile.createdAt);
-    
+    console.log(profile)
     return(
         <div className={styles.userProfileContainer}>
+            <div className={styles.PfpImage}>placehodler</div>
             <div className={styles.userData}>
-                <div className={styles.PfpImage}>placehodler</div>
                 <h1><span>{profile.name}</span></h1>
                 <table>
                     <tbody>
@@ -22,17 +23,7 @@ export default async function DashBoardUserData() {
                     </tbody>
                 </table>
             </div>
-            <div className={styles.role}>
-                {(profile.role === "admin" )?
-                (
-                    <p className = {styles.Admin}>ADMIN</p>
-                )
-                :(
-                    <p className={styles.User}>Member since : <br></br>{createdAt.toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric",})}</p>
-                )
-
-                }
-            </div>
+            
         </div>
     )
 }

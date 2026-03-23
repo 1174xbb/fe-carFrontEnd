@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { AuthOptions } from "next-auth";
 import NextAuthProvider from "@/providers/NextAuthProviders";
 import { authOptions } from "@/libs/authOptions";
+import ReduxProvider from "./redux/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,10 +28,12 @@ export default async function RootLayout({
           <link href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Electrolize&family=Jura:wght@300..700&family=Major+Mono+Display&display=swap" rel="stylesheet"/>
       </head>
       <body>
-        <NextAuthProvider session={nextAuthSession}>
-          <TopBar></TopBar>
-          {children}
-        </NextAuthProvider>
+        <ReduxProvider>
+          <NextAuthProvider session={nextAuthSession}>
+            <TopBar/>
+            {children}
+          </NextAuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

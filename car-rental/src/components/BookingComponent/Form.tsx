@@ -1,110 +1,43 @@
-"use client"
-
-import styles from "./page.module.css"
-import { useSearchParams } from "next/navigation";
+"use client";
 import { Select, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
 import getCars from "@/libs/getCars";
-import { BookingItem, carData, carJson } from "../../../interfaces";
+import { carData, carJson } from "../../../interfaces";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
-import { Dayjs } from "dayjs";
 import Image from "next/image";
-import { useDispatch, UseDispatch } from "react-redux";
-import { AppDispatch } from "../redux/store";
-import { addBooking } from "../redux/features/cartSlice";
-import { useSession } from "next-auth/react";
-import bookCar from "@/libs/bookCar";
-import { useRouter } from "next/navigation";
+import styles from "./Form.module.css"
 
-
-export default function DashBoard() {
-  const urlParams = useSearchParams();
-  const type = urlParams.get("type");
-
-  const { data: session } = useSession();
-  const router = useRouter();
-
-  // Make sure session.user exists
-  const userID = session?.user._id || "";
-  const token = session?.user.token || "";
-
-  const [cars, setCars] = useState<carData[]>([]);
+export default function Form() {
+  const [cars, setCars] = useState<carData[]>([]); // typed array
   const [selectedCar, setSelectedCar] = useState<string>("");
   const [imageURL, setImageURL] = useState("");
   const [description, setCarDescription] = useState("Select a Car!");
-  const [bookingDate, setBookingDate] = useState<Dayjs | null>(null);
 
-  const dispatch = useDispatch<AppDispatch>();
-
-  // Fetch all cars
   useEffect(() => {
     async function fetchCar() {
       try {
-        const response: carJson = await getCars();
-        setCars(response.data);
+        const response: carJson = await getCars(); // assume getCars returns carJson
+        setCars(response.data); // use the data array
       } catch (err) {
         console.error("Failed to fetch cars", err);
       }
     }
+
     fetchCar();
   }, []);
 
-  // Handle car selection
-  function handleCarChange(e: any) {
-    const selectedId = e.target.value;
-    setSelectedCar(selectedId);
-    const car = cars.find((c) => c._id === selectedId);
+  function handleCarChange(e:any){
+    const selectedId = e.target.value;      
+    setSelectedCar(selectedId);   
+    const car = cars.find((c) => c._id === selectedId); 
     setCarDescription(car ? car.description : "No description available");
-    setImageURL(car ? car.imagePath : "");
+    setImageURL(car? car.imagePath:"");
   }
 
-  // Make a booking
-  const makeReservation = async () => {
-    if (!selectedCar || !bookingDate) {
-      alert("Please select a car and date!");
-      return;
-    }
-
-    if (!token) {
-      alert("You must be logged in to book a car!");
-      return;
-    }
-
-    try {
-      // Send booking to backend
-      const result = await bookCar(selectedCar, bookingDate.format("YYYY/MM/DD"), token);
-      console.log("Booking successful:", result);
-
-      // Update Redux store
-      const item: BookingItem = {
-        car_id: selectedCar,
-        bookingdate: bookingDate.format("YYYY/MM/DD"),
-        user_id: userID,
-      };
-      dispatch(addBooking(item));
-      router.push("/dashboard")
-      alert("Booking confirmed!");
-    } catch (err: any) {
-      alert(`Booking failed: ${err.message || "Server error"}`);
-    }
-  };
-
-    return (
-    <>
-        <div className={styles.Rental}>
-            {(type === "newBooking")?
-                (
-                    <h1>New Rental</h1>
-                )
-                :
-                (
-                    <h1>Edit your Rental</h1>
-                )
-            }
-        </div>
-        <div className={styles.FormContainer}>
+  return (
+    <div className={styles.FormContainer}>
         <div className={styles.CarImage}>
             {imageURL===""?
             (<p>Your car Image goes here...</p>)
@@ -147,7 +80,7 @@ export default function DashBoard() {
                     >
                     {cars.map((car) => (
                         <MenuItem key={car._id} value={car._id}>
-                        {car.carName}
+                        {car.name}
                         </MenuItem>
                     ))}
                     </Select>
@@ -158,8 +91,6 @@ export default function DashBoard() {
                     <h1> 【2】Pick date!!</h1>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker
-                            value={bookingDate}
-                            onChange={(value)=>{setBookingDate(value)}}
                             sx={{
                                 width: "100%",
                                 color: "hsl(45, 8%, 28%)",        
@@ -178,11 +109,10 @@ export default function DashBoard() {
                     <p>You can rent our car for a day, pick up time can be any, but you must return before closing time</p>
                 </div>
             </div>
-            <button className={styles.Confirmation} onClick={makeReservation}>
+            <button className={styles.Confirmation}>
                 Confirm Rental!
             </button>
         </div>
     </div>
-    </>
   );
 }

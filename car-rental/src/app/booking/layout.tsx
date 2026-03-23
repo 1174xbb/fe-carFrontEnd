@@ -18,15 +18,8 @@ export default async function RootLayout({
 
   const nextAuthSession = await getServerSession(authOptions) 
   return (
-    <html lang="en">
-      <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com"/>
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
-          <link href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Electrolize&family=Jura:wght@300..700&family=Major+Mono+Display&display=swap" rel="stylesheet"/>
-      </head>
-      <body>
+      <>
           {children}
-      </body>
-    </html>
+      </>
   );
 }

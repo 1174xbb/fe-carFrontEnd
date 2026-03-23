@@ -1,18 +1,19 @@
 .userProfileContainer{
     display: flex;
-    flex-direction: column;
-    width: 50%;
+    flex-direction: row;
+    width: 100%;
     min-width: 175px;
-    max-width: 400px;
-}
-
-.userData{
+    
     color: hsl(45, 8%, 28%) ;
     background-color: hsl(50, 31%, 77%);
     box-shadow: 3px 3px hsl(57, 10%, 59%);
-    padding: 10px;   
-    text-align: center;
-    justify-items: center;
+}
+
+.userData{
+    padding: 10px; 
+    width: 100%;  
+    text-align: left;
+    justify-items: left;
 }
 
 .userData h1 {
@@ -22,13 +23,12 @@
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     gap: 5px;
 
     width: 100%; 
 }
 
-.userData h1::before,
 .userData h1::after {
     content: "";
     flex: 1;
@@ -67,6 +67,7 @@
     background-color: hsl(48, 8%, 37%);
     margin-top: 10px;
     margin-bottom: 10px;
+    margin: 10px 0px 10px 10px;
 }
 
 .User{

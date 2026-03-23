@@ -1,13 +1,31 @@
 "use client";
 import styles from "./BookingCard.module.css"
 import Image from "next/image";
+import removeBooking from "@/libs/deleteBooking";
 
-export default function UserBookingCard({ booking }: any) {
+interface UserBookingCardProps {
+  booking: any;
+  token: string;
+  onDeleted: (bookingId: string) => void;
+}
+export default function UserBookingCard({ booking, token, onDeleted }: UserBookingCardProps) {
+  const handleDelete = async () => {
+    if (!confirm("Are you sure you want to remove this booking?")) return;
+
+    try {
+      await removeBooking(booking._id, token);
+      onDeleted(booking._id); // notify parent to remove from UI
+      alert("Booking removed!");
+    } catch (err: any) {
+      alert(`Failed to remove booking: ${err.message}`);
+    }
+  };
+
   return (
     <div className={styles.UserBookingCardContainer}>
       <div className={styles.buttonContainer}>
           <button className={styles.editButton}>&#9998;</button>
-          <button className={styles.deleteButton}>ⓧ</button>
+          <button className={styles.deleteButton} onClick={handleDelete}>ⓧ</button>
       </div>
 
       <div className={styles.CarImage}>

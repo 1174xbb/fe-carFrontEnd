@@ -1,0 +1,117 @@
+
+.CarImage{
+    position: relative;
+    flex: 1;
+    color: hsl(45, 8%, 28%) ;
+    background-color: hsl(50, 31%, 77%);
+    box-shadow: 3px 3px hsl(57, 10%, 59%);
+    font-family: "Jura", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+
+
+.FormContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin: 30px;
+    min-height: 400px;
+}
+
+@media (max-width:768px){
+    .FormContainer{
+        flex-direction: column;
+    }
+    .InfoContainer{
+        flex-direction: column;
+    }
+    .CarImage{
+        min-height: 300px;
+    }
+}
+
+.InfoContainer{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 50px;
+
+    font-family: "Jura", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.PickCarContainer{
+    flex: 1;
+    min-width: 200px;
+    color: hsl(45, 8%, 28%) ;
+    background-color: hsl(50, 31%, 77%);
+    box-shadow: 3px 3px hsl(57, 10%, 59%);
+}
+
+.PickCarContainer h1{
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    padding: 10px;
+    color: hsl(50, 31%, 77%);
+    background-color: hsl(45, 8%, 28%);
+}
+
+.PickCarContainer p{
+    padding: 10px;
+}
+
+.PickDateContainer{
+    flex: 1;
+    color: hsl(45, 8%, 28%) ;
+    background-color: hsl(50, 31%, 77%);
+    box-shadow: 3px 3px hsl(57, 10%, 59%);
+}
+
+.PickDateContainer h1{
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    padding: 10px;
+    color: hsl(50, 31%, 77%);
+    background-color: hsl(45, 8%, 28%);
+}
+
+.interactionContainer{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 30px;
+}
+
+.Confirmation{
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    flex: 1;
+    color: hsl(44, 8%, 28%) ;
+    background-color: hsl(48, 16%, 64%);
+    font-size: 50px;
+    transition: 0.1s ease;
+}
+
+.Confirmation:hover{
+    cursor: pointer;
+    color: hsl(49, 32%, 77%);
+    background-color: hsl(44, 8%, 28%);
+    transition: 0.1s ease;
+}
+
+.PickDateContainer p{
+    padding: 10px;
+}

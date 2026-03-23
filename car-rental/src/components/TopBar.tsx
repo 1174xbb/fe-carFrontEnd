@@ -1,24 +1,36 @@
-import styles from "./TopBar.module.css"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/libs/authOptions"
-import Link from "next/link"
-import { signOut } from "next-auth/react"
+"use client"
 
-export default async function TopBar(){
-    const session = await getServerSession(authOptions)
-    return(
+import styles from "./TopBar.module.css"
+import TopBarItem from "./TopBarItem"
+import { useSession, signIn, signOut } from "next-auth/react"
+
+export default function TopBar() {
+    const { data: session } = useSession()
+
+    return (
         <div className={styles.TopBar}>
             <ul>
-                <li>Rent a car</li>
-                <li>our car</li>
-                <li>Logo</li>
+                <TopBarItem url="/booking?type=newBooking" name="Rent a car" />
+                <TopBarItem url="/booking" name="Our car" />
+                <TopBarItem url="/" name="Logo" />
             </ul>
+
             <div className={styles.username}>
-                {
-                    session?
-                    <Link href={"/api/auth/signout"}>[{session.user?.name}]</Link>:
-                    <Link href={"/api/auth/signin"}>[visitor]</Link>
-                }                
+                {session ? (
+                    <span
+                        onClick={() => signOut()}
+                        style={{ cursor: "pointer" }}
+                    >
+                        [{session.user?.name}]
+                    </span>
+                ) : (
+                    <span
+                        onClick={() => signIn()}
+                        style={{ cursor: "pointer" }}
+                    >
+                        [visitor]
+                    </span>
+                )}
             </div>
         </div>
     )

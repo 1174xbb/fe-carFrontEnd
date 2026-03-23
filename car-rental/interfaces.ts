@@ -46,3 +46,10 @@ export interface Booking {
   };
   bookingDate: string;
 }
+
+export interface BookingItem{
+  car_id: string
+  bookingdate: string
+  user_id: string
+
+}
