@@ -1,0 +1,7 @@
+.dashBoardContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+    margin: 50px
+}

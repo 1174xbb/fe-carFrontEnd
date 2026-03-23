@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import TopBar from "@/components/TopBar";
 import { getServerSession } from "next-auth";
 import { AuthOptions } from "next-auth";
@@ -27,10 +25,7 @@ export default async function RootLayout({
           <link href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Electrolize&family=Jura:wght@300..700&family=Major+Mono+Display&display=swap" rel="stylesheet"/>
       </head>
       <body>
-        <NextAuthProvider session={nextAuthSession}>
-          <TopBar></TopBar>
           {children}
-        </NextAuthProvider>
       </body>
     </html>
   );

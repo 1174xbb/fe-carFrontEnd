@@ -14,3 +14,35 @@ export interface carData{
     imagePath:string,
     id:string
 }
+
+
+export interface LoginUser {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  token: string;
+}
+
+export interface JWTToken {
+  id: string;
+  token: string;
+}
+
+export interface SessionUser {
+  id: string;
+  token?: string;
+  name: string;
+  email: string;
+}
+
+export interface Booking {
+  _id: string;
+  user: string;
+  carProvider: {
+    name: string;
+    address: string;
+    telephone: string;
+  };
+  bookingDate: string;
+}

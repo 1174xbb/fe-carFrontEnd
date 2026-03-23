@@ -1,0 +1,93 @@
+
+
+.UserBookingCardContainer{
+    width: 100%;
+}
+
+.buttonContainer{
+    height: 35px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 2.5px;
+    gap: 2.5px;
+}
+
+.editButton{
+    width: 30px;
+    height: 30px;
+    color: rgb(104, 114, 177);
+    border: 2px solid rgba(104, 114, 177, 0.575);
+    background-color: hsl(235, 33%, 71%);
+    border-radius: 5px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.deleteButton{
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(177, 104, 104, 0.527);
+    background-color: rgb(205, 165, 165);
+    border-radius: 5px;
+    color: rgb(177, 104, 104);
+    font-size: 20px;
+    line-height: 20px;
+}
+
+
+.DateData {
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: hsl(48, 8%, 37%);
+    color: hsl(49, 32%, 77%);
+    width: 100%; 
+    padding: 3px 0px;
+}
+
+.DateName {
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: 100%; 
+}
+
+.DateName p {
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 3px 2px;
+    width: 100%; 
+}
+
+.DateName p::before,
+.DateName p::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: hsl(57, 10%, 59%);
+}
+
+.data{
+    padding: 3px 10px;
+    text-align: center;
+}
+
+.CarImage{
+    background-color:hsl(48, 16%, 64%) ;
+    height: 100px;
+    position: relative;
+}

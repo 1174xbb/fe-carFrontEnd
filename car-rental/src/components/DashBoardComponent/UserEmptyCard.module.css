@@ -1,0 +1,43 @@
+.UserEmptyCard{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    justify-content: center;
+}
+
+.Empty{
+    width: 100%;
+}
+
+.Empty p {
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 3px 2px;
+    width: 100%;
+}
+
+.Empty p::before,
+.Empty p::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: hsl(57, 10%, 59%);
+}
+
+.Button{
+    padding: 0px 10px;
+    cursor: pointer;
+    background-color: hsla(48, 16%, 64%, 0.451) ;
+}
+
+.Button:hover{
+    background-color: hsla(48, 16%, 64%, 0.74) ;
+}

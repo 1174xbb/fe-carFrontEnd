@@ -7,6 +7,6 @@ export default async function getCars() {
     }
 
     const data = response.json();
-    console.log(data);
+    //console.log(data);
     return await data;
 }

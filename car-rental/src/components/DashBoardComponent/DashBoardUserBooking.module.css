@@ -1,0 +1,28 @@
+.BookingContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 800px;
+    gap: 20px;
+    justify-content: center;
+}
+
+.userCardContainer{
+    background-color: hsl(49, 32%, 77%);
+    max-width: 200px;
+    min-width: 150px;
+    flex: 1;
+    box-shadow: 3px 3px hsl(57, 10%, 59%);
+    font-family: "Jura", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: hsl(50, 8%, 31%);
+}
+
+.userCardContainer:nth-child(2) {
+    transform: translateY(-20px);
+}
+.userCardContainer:nth-child(odd) {
+    transform: translateY(20px);
+}

@@ -1,0 +1,53 @@
+.TopBar{
+    display: flex;
+    position: relative;
+    flex-direction: row-reverse;
+    padding: 10px ;
+    border-bottom: 3px solid hsl(45, 8%, 28%) ;
+    justify-items: center;
+}
+
+.TopBar ul{
+    display: flex;
+    flex-direction: row;
+    gap: 10px
+}
+
+.TopBar ul ::before{
+    content: "■ ";
+    font-size: 30px;
+}
+
+.TopBar li{
+    color: hsl(45, 8%, 28%);
+    width: 150px;
+    background-color: hsl(48, 16%, 64%);
+    padding: 0px 5px ;
+    font-size: 20px;
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+.username{
+    position: absolute;
+    left: 10px;
+
+    color: hsl(45, 8%, 28%);
+    width: 150px;
+    background-color: hsl(48, 16%, 64%);
+    padding: 0px 5px ;
+    font-size: 20px;
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+.username::before{
+    content: "■ ";
+    font-size: 30px;
+}
+
+@media (max-width:768px){
+    .TopBar{
+        display: none;
+    }
+}

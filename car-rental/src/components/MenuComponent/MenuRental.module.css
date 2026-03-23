@@ -1,0 +1,18 @@
+.MenuRentalContainer{
+    background-color: hsl(50, 31%, 77%);;
+    max-width: 600px;
+    padding: 10px;
+    box-shadow: 4px 4px hsl(60, 8%, 35%) ;
+}
+
+.MenuCarCatalog{
+    display: flex;
+    flex-direction: column;
+}
+
+.MenuRentalContainer h2{
+    font-family: "Jura", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
