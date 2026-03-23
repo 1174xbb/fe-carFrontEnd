@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import styles from "./page.module.css"
-import { useSearchParams } from "next/navigation";
+import styles from "./page.module.css";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Select, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
 import getCars from "@/libs/getCars";
@@ -9,26 +9,26 @@ import { BookingItem, carData, carJson } from "../../../interfaces";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers";
-import { Dayjs } from "dayjs";
+import dayjs,{ Dayjs } from "dayjs";
 import Image from "next/image";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../redux/store";
 import { addBooking } from "../redux/features/cartSlice";
 import { useSession } from "next-auth/react";
 import bookCar from "@/libs/bookCar";
-import { useRouter } from "next/navigation";
+import updateBooking from "@/libs/updateBooking";
+import { api_URL } from "@/libs/Fetcher";
 
-
-export default function DashBoard() {
+export default function BookingPage() {
   const urlParams = useSearchParams();
   const type = urlParams.get("type");
+  const bookingId = urlParams.get("bookingId");
 
   const { data: session } = useSession();
   const router = useRouter();
 
-  // Make sure session.user exists
-  const userID = session?.user._id || "";
   const token = session?.user.token || "";
+  const userID = session?.user._id || "";
 
   const [cars, setCars] = useState<carData[]>([]);
   const [selectedCar, setSelectedCar] = useState<string>("");
@@ -51,46 +51,67 @@ export default function DashBoard() {
     fetchCar();
   }, []);
 
-  // Handle car selection
-  function handleCarChange(e: any) {
+  // Fetch existing booking if editing
+  useEffect(() => {
+    console.log("has reached")
+  if (type === "edit" && bookingId && token) {
+    async function fetchBooking() {
+      try {
+        console.log("editing booking");
+        const res = await fetch(`${api_URL}bookings/${bookingId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) throw new Error("Failed to fetch booking");
+        const data = await res.json();
+        setSelectedCar(data.data.carProvider._id);
+        setBookingDate(dayjs(data.data.bookingDate)); // use dayjs(), not new
+        setImageURL(data.data.carProvider.imagePath);
+        setCarDescription(data.data.carProvider.description);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchBooking();
+  }
+}, [type, bookingId, token]);
+
+  const handleCarChange = (e: any) => {
     const selectedId = e.target.value;
     setSelectedCar(selectedId);
     const car = cars.find((c) => c._id === selectedId);
     setCarDescription(car ? car.description : "No description available");
     setImageURL(car ? car.imagePath : "");
-  }
+  };
 
-  // Make a booking
-  const makeReservation = async () => {
+  const handleSubmit = async () => {
     if (!selectedCar || !bookingDate) {
       alert("Please select a car and date!");
       return;
     }
-
     if (!token) {
-      alert("You must be logged in to book a car!");
+      alert("You must be logged in!");
       return;
     }
 
     try {
-      // Send booking to backend
-      const result = await bookCar(selectedCar, bookingDate.format("YYYY/MM/DD"), token);
-      console.log("Booking successful:", result);
+      if (type === "newBooking") {
+        await bookCar(selectedCar, bookingDate.format("YYYY/MM/DD"), token);
+        const item: BookingItem = {
+          car_id: selectedCar,
+          bookingdate: bookingDate.format("YYYY/MM/DD"),
+          user_id: userID,
+        };
+        dispatch(addBooking(item));
+      } else if (type === "edit" && bookingId) {
+        await updateBooking(bookingId, { bookingDate: bookingDate.format("YYYY/MM/DD") }, token);
+      }
 
-      // Update Redux store
-      const item: BookingItem = {
-        car_id: selectedCar,
-        bookingdate: bookingDate.format("YYYY/MM/DD"),
-        user_id: userID,
-      };
-      dispatch(addBooking(item));
-      router.push("/dashboard")
-      alert("Booking confirmed!");
+      alert("Booking saved!");
+      router.push("/dashboard");
     } catch (err: any) {
       alert(`Booking failed: ${err.message || "Server error"}`);
     }
   };
-
     return (
     <>
         <div className={styles.Rental}>
@@ -143,6 +164,8 @@ export default function DashBoard() {
                         '& .MuiSelect-select': {
                         padding: "10px 12px",
                         },
+                        backgroundColor: type === "edit" ? "#b2ac95" : "transparent",
+                        pointerEvents: type === "edit" ? "none" : "auto",
                     }}
                     >
                     {cars.map((car) => (
@@ -178,8 +201,13 @@ export default function DashBoard() {
                     <p>You can rent our car for a day, pick up time can be any, but you must return before closing time</p>
                 </div>
             </div>
-            <button className={styles.Confirmation} onClick={makeReservation}>
-                Confirm Rental!
+            <button className={styles.Confirmation} onClick={handleSubmit}>
+                {type=="edit"?
+                "✎ Confirm Edit"
+                :
+                "☑ Confirm Rental!"
+
+                }
             </button>
         </div>
     </div>

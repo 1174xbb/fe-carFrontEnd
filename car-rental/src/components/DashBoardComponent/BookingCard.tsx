@@ -2,13 +2,25 @@
 import styles from "./BookingCard.module.css"
 import Image from "next/image";
 import removeBooking from "@/libs/deleteBooking";
+import { useRouter } from "next/navigation"; // ensure you are in a client component
+import Link from "next/link";
+
 
 interface UserBookingCardProps {
   booking: any;
   token: string;
   onDeleted: (bookingId: string) => void;
 }
+
 export default function UserBookingCard({ booking, token, onDeleted }: UserBookingCardProps) {
+  const router = useRouter();
+
+  const handleEdit = () => {
+    // Navigate to the booking page with query params
+    router.push(
+      `/booking?type=edit&bookingId=${booking._id}&carId=${booking.carProvider._id}&bookingDate=${booking.bookingDate}`
+    );
+  };
   const handleDelete = async () => {
     if (!confirm("Are you sure you want to remove this booking?")) return;
 
@@ -24,7 +36,7 @@ export default function UserBookingCard({ booking, token, onDeleted }: UserBooki
   return (
     <div className={styles.UserBookingCardContainer}>
       <div className={styles.buttonContainer}>
-          <button className={styles.editButton}>&#9998;</button>
+        <Link href={`/booking?type=edit&bookingId=${booking._id}&carId=${booking.carProvider._id}&bookingDate=${booking.bookingDate}`}><button className={styles.editButton} onClick={handleEdit}>&#9998;</button></Link>
           <button className={styles.deleteButton} onClick={handleDelete}>ⓧ</button>
       </div>
 
