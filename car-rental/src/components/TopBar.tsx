@@ -11,7 +11,7 @@ export default function TopBar() {
         <div className={styles.TopBar}>
             <ul>
                 <TopBarItem url="/booking?type=newBooking" name="Rent a car" />
-                <TopBarItem url="/booking" name="Our car" />
+                <TopBarItem url="/cars" name="Our car" />
                 <TopBarItem url="/" name="Logo" />
             </ul>
 

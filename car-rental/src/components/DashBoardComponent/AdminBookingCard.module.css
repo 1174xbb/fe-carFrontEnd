@@ -1,0 +1,95 @@
+.UserBookingCardContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    background-color: hsl(49, 32%, 77%);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.CarImage {
+    background-color: hsl(48, 16%, 64%);
+    width: 40%;
+    flex-shrink: 0; 
+    position: relative;
+    
+}
+
+.Info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;  
+    min-width: 0;  
+}
+
+.DateData {
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    background-color: hsl(48, 8%, 37%);
+    color: hsl(49, 32%, 77%);
+    padding: 5px 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.carTitle {
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.editButton, .deleteButton {
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.editButton {
+    color: rgb(104, 114, 177);
+    border: 2px solid rgba(104, 114, 177, 0.5);
+    background-color: hsl(235, 33%, 71%);
+}
+
+.deleteButton {
+    color: rgb(177, 104, 104);
+    border: 2px solid rgba(177, 104, 104, 0.5);
+    background-color: rgb(205, 165, 165);
+}
+
+.data {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+.DateName {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-family: "Electrolize", sans-serif;
+}
+
+.data p {
+    margin: 2px 0;
+    font-size: 16px;
+}

@@ -6,6 +6,7 @@ import UserEmptyCard from "./UserEmptyCard";
 import styles from "./DashBoardUserBooking.module.css";
 import getBookings from "@/libs/getBookings";
 import { useSession } from "next-auth/react";
+import AdminBookingCard from "./AdminBookingCard";
 
 const MAX_BOOKINGS = 3;
 
@@ -16,13 +17,24 @@ export default function UserBookings() {
   const token = session?.user.token;
   const role = session?.user.role;
 
+  const handleDelete = (bookingId: string) => {
+    setBookings((prev) => prev.filter((b) => b._id !== bookingId));
+  };
+
+  const emptySlots = MAX_BOOKINGS - bookings.length;
+
   useEffect(() => {
     if (!token) return;
 
     async function fetchBookings() {
       try {
         const data = await getBookings(token as string);
-        setBookings(data.slice(0, MAX_BOOKINGS));
+        if(role !=="admin"){
+          setBookings(data.slice(0, MAX_BOOKINGS));
+        }else{
+          setBookings(data);
+        }
+        
       } catch (err) {
         console.error("Failed to fetch bookings:", err);
       }
@@ -31,13 +43,24 @@ export default function UserBookings() {
     fetchBookings();
   }, [token]);
 
-  if (!session || !token || role === "admin") return null;
+  if (!session || !token ) return null;
 
-  const handleDelete = (bookingId: string) => {
-    setBookings((prev) => prev.filter((b) => b._id !== bookingId));
-  };
+  if(role === "admin"){
+    return(
+      <div className={styles.AdminBookingPane}>
+        <div className={styles.Header}>
+          Admin manage
+          </div>
+        <hr className={styles.Line}></hr>
+      {bookings.map((b) => (
+        <div key={b._id}>
+          <AdminBookingCard booking={b} token={token} onDeleted={handleDelete} />
+        </div>
+      ))}
+      </div>
+    )
+  }
 
-  const emptySlots = MAX_BOOKINGS - bookings.length;
 
   return (
     <div className={styles.BookingContainer}>

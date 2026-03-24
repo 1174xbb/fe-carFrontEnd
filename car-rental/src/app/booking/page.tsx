@@ -117,11 +117,11 @@ export default function BookingPage() {
         <div className={styles.Rental}>
             {(type === "newBooking")?
                 (
-                    <h1>New Rental</h1>
+                    <h1>new Rental</h1>
                 )
                 :
                 (
-                    <h1>Edit your Rental</h1>
+                    <h1>edit your Rental</h1>
                 )
             }
         </div>

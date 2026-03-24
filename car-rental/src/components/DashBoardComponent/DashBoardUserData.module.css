@@ -6,6 +6,13 @@
     max-width: 400px;
 }
 
+@media (max-width:768px){
+    .userProfileContainer{
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 .userData{
     color: hsl(45, 8%, 28%) ;
     background-color: hsl(50, 31%, 77%);
@@ -87,4 +94,21 @@
 
 .Admin::after{
     content: ">>";
+}
+
+.Header{
+    color: #4d4a42;
+    font-size: 50px;
+    font-family: "Major Mono Display", monospace;
+    font-weight: bold;
+    font-style: normal;
+    text-shadow: 2px 2px hsl(57, 10%, 59%);
+    margin: 20px;
+    text-align: right;;
+
+}
+
+.Wrapper{
+    display: flex;
+    flex-direction: column;
 }

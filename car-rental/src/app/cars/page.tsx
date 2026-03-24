@@ -2,16 +2,15 @@ import DashBoardUserData from "@/components/DashBoardComponent/DashBoardUserData
 import UserBookings from "@/components/DashBoardComponent/DashBoardUserBooking"
 import styles from "./page.module.css"
 
-export default function DashBoard(){
+export default function Cars(){
     return(
         <>
         <div className={styles.Header}>
-            <span>dashboard&#11163;</span>
+            <span>our cars</span>
             
         </div>
         <div className={styles.dashBoardContainer}>
-            <DashBoardUserData></DashBoardUserData>
-            <UserBookings></UserBookings>
+            
         </div>
         </>
     )

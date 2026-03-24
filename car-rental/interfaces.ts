@@ -38,7 +38,10 @@ export interface SessionUser {
 
 export interface Booking {
   _id: string;
-  user: string;
+  user:{
+    _id:string;
+    name:string;
+  };
   carProvider: {
     name: string;
     address: string;
