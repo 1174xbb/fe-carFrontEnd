@@ -117,7 +117,7 @@ export default function Cars(){
                 {(selectedCar==="")?
                     (
                         <div style={{width:"100%",height:"100%",justifyContent:"center",display:"flex",alignItems:"center",textAlign:"center",padding:"10px"}}>
-                            <p>Car Infommation will be displayed here...</p>
+                            <p>Car Information will be displayed here...</p>
                         </div>
                     ):(
                         <div className={styles.detailedInformation}>
