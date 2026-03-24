@@ -13,12 +13,17 @@
     font-weight: bold;
     font-style: normal;
     transition: 0.1s ease;
+    box-sizing: border-box;
+    
+    border-left: 10px double #c9c5ab; 
+    border-right: 10px double #c9c5ab; 
 }
 
 .TopBar:hover{
     background-color: #4d4a42;
     color: #d7d0b2;
     transition: 0.1s ease;
+    transform: translateY(3px);
 
 
 }

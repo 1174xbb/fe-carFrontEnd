@@ -16,3 +16,8 @@
     font-weight: 500;
     font-style: normal;
 }
+
+.MenuRentalContainer hr{
+
+    border: 2px solid #b2ac95;
+}

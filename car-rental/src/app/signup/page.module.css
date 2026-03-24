@@ -7,7 +7,76 @@
     font-style: normal;
     text-shadow: 2px 2px hsl(57, 10%, 59%);
     margin: 20px;
-    display: flex;
-    justify-content: space-between;
+    text-align: center;
     
+}
+
+.FormContainer{
+    
+    margin: 50px;
+    margin-top: 10px ;
+    width: 50%;
+    max-width: 700px;
+    color: hsl(45, 8%, 28%) ;
+    background-color: hsl(50, 31%, 77%);
+    box-shadow: 3px 3px hsl(57, 10%, 59%);
+    padding: 20px;   
+    text-align: left;
+    justify-items: center;
+    justify-self: center;
+    font-family: "Jura", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+.ContentContainer p{
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.ContentContainer p::before{
+    content: "■ ";
+}
+
+.ContentContainer input{
+    background-color: hsl(48, 16%, 64%);
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.ContentContainer input:focus{
+    color: #4d4a42;
+}
+
+.RegisterButton{
+    background-color: #b2ac95 ;
+    justify-content: center;
+    
+    transition: 0.1s ease;
+}
+
+.RegisterButton button{
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    border-top: 10px double #d7d1b3; 
+    border-bottom: 10px double #d7d1b3; 
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-style: normal; 
+}
+
+.RegisterButton:hover{
+    color: #d7d1b3;
+    background-color: #4d4a42;
+    transition: 0.1s ease;
+}
+
+.Required::after{
+    content: "*";
+    color: rgb(169, 90, 90);
 }

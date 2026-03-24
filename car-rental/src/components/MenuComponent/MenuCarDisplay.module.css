@@ -1,6 +1,7 @@
 .carCardContainer:hover{
     color: #d7d0b2;
     background-color: #4d4a42;
+    transition: 0.1s ease;
 }
 
 .carCardContainer {
@@ -11,6 +12,11 @@
     gap: 10px;
     background-color: hsl(50, 31%, 77%);
     margin: 0px;
+    transition: 0.1s ease;
+    box-sizing: border-box;
+    
+    border-top: 10px double #d7d1b3; 
+    border-bottom: 10px double #d7d1b3; 
     
 }
 

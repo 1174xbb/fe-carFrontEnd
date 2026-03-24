@@ -56,3 +56,11 @@ export interface BookingItem{
   user_id: string
 
 }
+
+export interface RegisterUserData {
+    name: string;
+    telephone: string;
+    email: string;
+    password: string;
+    role?: string;
+}

@@ -21,3 +21,8 @@
     font-size: 25px;
     text-align: center;
 }
+
+.carDisplayContainer hr{
+
+    border: 2px solid #b2ac95;
+}

@@ -13,7 +13,7 @@ export default async function DashBoardUserData() {
     return(
         <div className={styles.userProfileContainer}>
             <div className={styles.userData}>
-                <div className={styles.PfpImage}>placehodler</div>
+                <div className={styles.PfpImage}></div>
                 <h1><span>{profile.name}</span></h1>
                 <table>
                     <tbody>

@@ -36,6 +36,10 @@
     font-family: "Electrolize", sans-serif;
     font-weight: bold;
     font-style: normal;
+    box-sizing: border-box;
+    
+    border-left: 10px double #c9c5ab; 
+    border-right: 10px double #c9c5ab; 
 }
 .username::before{
     content: "■ ";

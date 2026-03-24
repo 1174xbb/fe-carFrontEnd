@@ -33,19 +33,6 @@
 }
 
 
-.Header{
-    color: #4d4a42;
-    font-size: 50px;
-    font-family: "Major Mono Display", monospace;
-    font-weight: bold;
-    font-style: normal;
-    text-shadow: 2px 2px hsl(57, 10%, 59%);
-    margin: 20px;
-    display: flex;
-    justify-content: space-between;
-    
-}
-
 
 .FormContainer{
     display: flex;

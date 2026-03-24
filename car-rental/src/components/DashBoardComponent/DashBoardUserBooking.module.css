@@ -18,6 +18,7 @@
     font-weight: 500;
     font-style: normal;
     color: hsl(50, 8%, 31%);
+    transition: 0.2s ease;
 }
 
 .userCardContainer:nth-child(2) {
@@ -25,6 +26,13 @@
 }
 .userCardContainer:nth-child(odd) {
     transform: translateY(20px);
+}
+
+.userCardContainer:nth-child(odd):hover{
+    transform: translate(0px,10px);
+}
+.userCardContainer:nth-child(even):hover{
+    transform: translate(0px,-30px);
 }
 
 .AdminBookingPane{
@@ -72,4 +80,28 @@
 
 .AdminBookingPane::-webkit-scrollbar-track{
     background:  hsl(49, 32%, 77%);;
+}
+
+
+@media (max-width:768px){
+    .userCardContainer:nth-child(odd){
+    transform: translate(0px,0px);
+    }
+    .userCardContainer:nth-child(even){
+        transform: translate(0px,0px);
+    }
+    .userCardContainer:nth-child(odd):hover{
+    transform: translate(0px,-10px);
+    }
+    .userCardContainer:nth-child(even):hover{
+        transform: translate(0px,-10px);
+    }
+    .BookingContainer{
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 50px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
 }
