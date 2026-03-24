@@ -23,6 +23,7 @@ export default function BookingPage() {
   const urlParams = useSearchParams();
   const type = urlParams.get("type");
   const bookingId = urlParams.get("bookingId");
+  const preselectedCarId = urlParams.get("carId"); 
 
   const { data: session } = useSession();
   const router = useRouter();
@@ -50,6 +51,17 @@ export default function BookingPage() {
     }
     fetchCar();
   }, []);
+
+  useEffect(() => {
+    if (preselectedCarId && cars.length > 0) {
+      const car = cars.find(c => c.carName === preselectedCarId);
+      if (car) {
+        setSelectedCar(car._id);
+        setCarDescription(car.description);
+        setImageURL(car.imagePath);
+      }
+    }
+  }, [preselectedCarId, cars]);
 
   // Fetch existing booking if editing
   useEffect(() => {

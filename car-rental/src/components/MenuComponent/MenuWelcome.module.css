@@ -4,6 +4,8 @@
   font-style: normal;
   font-size: 60px;
   line-height: 65px;
+  text-shadow: 2px 2px hsl(57, 10%, 59%);
+
 }
 
 .MenuWelcome p{

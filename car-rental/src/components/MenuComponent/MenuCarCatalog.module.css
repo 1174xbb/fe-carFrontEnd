@@ -10,3 +10,14 @@
     flex-direction: column;
     
 }
+
+.MenuCarCatalog h1{
+    font-family: "Electrolize", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: #d7d0b2;
+    background-color: #4d4a42 ;
+    padding: 3px 10px;
+    font-size: 25px;
+    text-align: center;
+}

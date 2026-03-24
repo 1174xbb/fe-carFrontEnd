@@ -12,4 +12,13 @@
     font-family: "Electrolize", sans-serif;
     font-weight: bold;
     font-style: normal;
+    transition: 0.1s ease;
+}
+
+.TopBar:hover{
+    background-color: #4d4a42;
+    color: #d7d0b2;
+    transition: 0.1s ease;
+
+
 }

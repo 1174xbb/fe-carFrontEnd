@@ -3,6 +3,7 @@
 import styles from "./TopBar.module.css"
 import TopBarItem from "./TopBarItem"
 import { useSession, signIn, signOut } from "next-auth/react"
+import SubMenu from "./SubMenu"
 
 export default function TopBar() {
     const { data: session } = useSession()
@@ -12,20 +13,21 @@ export default function TopBar() {
             <ul>
                 <TopBarItem url="/booking?type=newBooking" name="Rent a car" />
                 <TopBarItem url="/cars" name="Our car" />
-                <TopBarItem url="/" name="Logo" />
+                <TopBarItem url="/" name="Home" />
             </ul>
 
             <div className={styles.username}>
+                {/*onClick={() => signOut()}*/}
+                {/*onClick={() => signIn()}*/}
                 {session ? (
                     <span
-                        onClick={() => signOut()}
+                        
                         style={{ cursor: "pointer" }}
                     >
                         [{session.user?.name}]
                     </span>
                 ) : (
                     <span
-                        onClick={() => signIn()}
                         style={{ cursor: "pointer" }}
                     >
                         [visitor]
