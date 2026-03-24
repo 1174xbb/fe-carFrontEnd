@@ -64,7 +64,7 @@ export default function SignUp(){
                 </input>
                 <p className={styles.Required}>Password : </p>
                 <input type="password"
-                placeholder="password"
+                placeholder="(At least 6 characters)"
                 onChange={(e)=>SetPass(e.target.value)}
                 >
                 </input>

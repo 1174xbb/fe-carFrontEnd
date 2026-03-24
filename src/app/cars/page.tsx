@@ -123,14 +123,14 @@ export default function Cars(){
                         <div className={styles.detailedInformation}>
                             <h1>Information</h1>
                             <hr></hr>
+                            <h3>Price</h3>
+                            <p style={{color:"green",fontWeight:"bold"}}>{price} THB</p>
                             <h3>Car provider:</h3>
                             <p>{provider}</p>
                             <h3>Address :</h3>
                             <p>{location}</p>
                             <h3>Contact number :</h3>
                             <p>{Tel}</p>
-                            <h3>Price</h3>
-                            <p>{price} THB</p>
                             <hr></hr>
                         </div>
                         
